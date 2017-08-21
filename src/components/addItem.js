@@ -7,7 +7,7 @@ export default function AddItem(props) {
         <h2 className="headline">Add an Item</h2>
 
         <div className="formGroup">
-          <label className="label" htmlFor="name">Item Name:</label>
+          <label className="label" htmlFor="name">Item Name:&nbsp;</label>
           <input className="input"
             id="name"
             value={props.itemNameInForm}
@@ -15,12 +15,12 @@ export default function AddItem(props) {
         </div>
 
         <div className="formGroup">
-          <label className="label" htmlFor="targetAmount">Target Amount:</label>
+          <label className="label" htmlFor="targetAmount">Target Amount:&nbsp;</label>
           <input className="input"
             type="number"
             id="targetAmount"
             value={props.targetAmountInForm}
-            onChange={(event) => props.handleInputChange('targetAmountInForm', event.target.value)}/>
+            onChange={(event) => props.handleInputChange('targetAmountInForm', parseInt(event.target.value))}/>
         </div>
 
         <button type="submit">Add Item</button>

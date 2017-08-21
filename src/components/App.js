@@ -8,6 +8,8 @@ class App extends Component {
     super(props);
     this.updateView = this.updateView.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.incrementItem = this.incrementItem.bind(this);
+    this.decrementItem = this.decrementItem.bind(this);
 
     this.state = {
       currentView: 'inventory',
@@ -29,7 +31,8 @@ class App extends Component {
     event.preventDefault();
     const newItem = {
       itemName: this.state.itemNameInForm,
-      targetAmount: this.state.targetAmountInForm
+      targetAmount: this.state.targetAmountInForm,
+      currentAmount: this.state.targetAmountInForm
     };
 
     this.setState((prevState) => ({
@@ -48,11 +51,31 @@ class App extends Component {
     this.setState({currentItems: itemsClone});
   }
 
+  incrementItem(index) {
+    const currentItems = this.state.currentItems;
+    currentItems[index].currentAmount++;
+
+    this.setState({
+      currentItems
+    });
+  }
+
+  decrementItem(index) {
+    const currentItems = this.state.currentItems;
+    currentItems[index].currentAmount--;
+
+    this.setState({
+      currentItems
+    });
+  }
+
   displayView() {
     switch(this.state.currentView) {
       case 'inventory':
         return <Inventory currentItems={this.state.currentItems}
-          removeItem={(itemIndex) => this.removeItem(itemIndex)}/>;
+          removeItem={(itemIndex) => this.removeItem(itemIndex)}
+          incrementItem={this.incrementItem}
+          decrementItem={this.decrementItem}/>;
 
       case 'addItem':
         return <AddItem handleInputChange={this.handleInputChange}

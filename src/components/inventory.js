@@ -6,7 +6,18 @@ export default function Inventory(props) {
       <div className="card" key={index}>
         <button type="button" onClick={() => props.removeItem(index)}>remove</button>
         <p className="itemName">{item.itemName}</p>
-        <p className="targetAmount">{item.targetAmount}</p>
+        <div className="amountGroup">
+          <span className="currentAmount">{item.currentAmount}</span>
+          &nbsp;/&nbsp;
+          <span className="targetAmount">{item.targetAmount}</span>
+        </div>
+
+        <div className="itemChangers">
+          <div className="decrementor"
+            onClick={() => props.decrementItem(index)}>{`<`}</div>
+          <div className="incrementor"
+            onClick={() => props.incrementItem(index)}>{`>`}</div>
+        </div>
       </div>
     );
   };
